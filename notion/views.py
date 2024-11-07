@@ -107,8 +107,9 @@ def widget(request, widget_id=None):
         context['asset_urls'] = asset_urls
         context['widget_id'] = widget_id
         widget_name, widget_congif = fetch_widget_congif(widget_id)
+        context.update(widget_congif)
         if widget_name:
-            return render(request, f"notion/widgets/{widget_name}.html", context=context|widget_congif)
+            return render(request, f"notion/widgets/{widget_name}.html", context=context)
         else:
             return render(request, f"notion/widgets/widget-do-not-exist.html")
     else:
